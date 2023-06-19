@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les articles{% endblock %}
+
+{% block body %}
+    <h1>Tous les articles</h1>
+
+        <div class="row">
+        {% for article in pagination %}
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" style="width: 300px; height: 200px; object-fit: cover;" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text"></p>
+                        <a href="{{ path('app_front_show', {id: article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                    </div>
+                    <div class="card-footer bg-primary">
+                        {% for category in article.categories %}
+                            <span class="badge badge-light">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    {# <div class="pagination">
+    {{ knp_pagination_render(pagination, 'partials/pagination.html.twig') }}
+</div> #}
+{% endblock %}

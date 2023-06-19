@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FrontController!{% endblock %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <img class="card-img-top" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{ article.title }}">
+
+    <style>
+        .formatted-article p {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .formatted-article img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <div class="article-content">
+        <div class="formatted-article">
+            {{ article.content|raw|nl2br }}
+        </div>
+    </div>
+
+    <h2>Commentaires</h2>
+
+    {% for comment in article.comments %}
+        <p>{{ comment.commentBy.email }}</p>
+        <p>{{ comment.content }}</p>
+        {% if app.user %}
+            <form action="{{ path('app_front_report_comment', { 'id': comment.id }) }}" method="POST">
+                <button type="submit" class="btn btn-danger">Signaler</button>
+            </form>
+        {% endif %}
+        <hr>
+    {% endfor %}
+
+    <h3>Ajouter un commentaire</h3>
+    {% if app.user %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">Commenter</button>
+        {{ form_end(form) }}
+    {% else %}
+        <p>Connectez-vous pour ajouter un commentaire.</p>
+    {% endif %}
+{% endblock %}
