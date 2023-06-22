@@ -50,7 +50,10 @@ class Article
         $this->categories = new ArrayCollection();
         $this->updateAt = new \DateTimeImmutable();
     }
-
+    public function __toString(): string
+    {
+        return $this->getTitle(); // ou une autre représentation sous forme de chaîne appropriée de l'objet Article
+    }
     public function getId(): ?int
     {
         return $this->id;
