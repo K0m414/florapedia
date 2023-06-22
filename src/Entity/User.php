@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->getEmail(); 
     }
-    
+
     public function getEmail(): ?string
     {
         return $this->email;

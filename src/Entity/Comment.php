@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
@@ -60,7 +59,7 @@ class Comment
         return $this->commentBy;
     }
 
-    public function setCommentBy(?User $commentBy): self
+    public function setCommentBy(?User $commentBy): static
     {
         $this->commentBy = $commentBy;
 
@@ -72,7 +71,7 @@ class Comment
         return $this->content;
     }
 
-    public function setContent(?string $content): self
+    public function setContent(?string $content): static
     {
         $this->content = $content;
 
@@ -84,7 +83,7 @@ class Comment
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -96,7 +95,7 @@ class Comment
         return $this->article;
     }
 
-    public function setArticle(?Article $article): self
+    public function setArticle(?Article $article): static
     {
         $this->article = $article;
 
